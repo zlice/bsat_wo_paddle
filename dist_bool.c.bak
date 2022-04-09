@@ -1,0 +1,268 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "lookup_table.h"
+
+typedef struct p_tree {
+  int layer;              // (()) layer
+  int start;              // what | block () starts
+  unsigned long int pos_dist; // distribute
+  unsigned long int neg_dist; // distribute
+} p_tree;
+
+typedef struct chain {
+  unsigned long int pos;
+  unsigned long int neg;
+} chain;
+
+// remove !()s and create new binary string from input
+// this makes the next steps easier
+int untie(char *in, unsigned long int *nin) {
+//void untie(char *in, unsigned char *nin) {
+            //input, new input aka translated input
+
+  // this -should- check for 'good' (expected) values
+  // also
+  // -should not- assume && or ||
+
+  // in_pos -    nin_pos -     total | <-- used for chain sizes
+  int     i = 0,       j = 0, or_tot = 1;
+  //        cnt -    layer pos
+  int not_layer = 0, l_pos = 0;
+  register int in_sz = strlen(in);   // less code (1 repnz instr)
+  #define is_notting (not_layer % 2) // more effective than a variable
+  // human readable
+  // #define ADD_NIN(n) nin[j++] = n;
+  // machine version
+  #define ADD_NIN(n) nin[j++] |= lookup[dec(n)];
+  unsigned long int cur_tok = 0;
+
+  for (i=0; i < in_sz ; i++) {
+    cur_tok = (unsigned long int)in[i];
+    //cur_tok = (unsigned char)in[i];
+    switch (cur_tok) {
+      case ' ':             continue;
+      case '!':
+         cur_tok = (unsigned long int)in[++i];
+         //cur_tok = (unsigned char)in[++i];
+         if (cur_tok == '(') {  // !()
+           l_pos++;
+           not_layer++;
+         } else                 // !x
+           ADD_NIN(dec('!') );
+         break;
+      case '(':
+         l_pos++;
+         break;
+      case ')': // could only dist on ) ? may make more sense, easier
+         l_pos--;
+         if (l_pos < not_layer)
+            not_layer--;
+         break;
+      case '|':
+         i++;   // skip expected next |
+         if (is_notting)    continue;
+         else               or_tot++;
+         break;
+      case '&': // only used with !() dist
+         i++;   // skip expected next &
+         if (is_notting) {
+           cur_tok = dec('|');
+           or_tot++;
+           break;
+         }
+         continue;
+      default:  // cur_tok > 16
+         if (is_notting)    ADD_NIN(dec('!') );
+         break;
+    } // switch(cur_tok)
+    ADD_NIN(cur_tok);
+    //printf("adding : %s\n", (unsigned char)cur_tok);
+  } // for strlen(in)
+
+  return or_tot;
+} // int untie
+
+// actually distribute and assign values
+void do_dist(chain *or, p_tree p, int e) {
+
+  int s;
+  //printf("   dist(ch, %d, %d)\n", p.start, e);
+  //printf("   dist ___ 0x%08x\n", p.pos_dist);
+  //printf("   dist ___ 0x%08x\n", p.neg_dist);
+  for (s=p.start; s <= e; s++) {
+    //printf("*");
+    or[s].pos |= p.pos_dist;
+    or[s].neg |= p.neg_dist;
+  }
+  p.pos_dist  = 0;
+  p.neg_dist  = 0;
+  //printf("\n");
+
+} // void do_dist
+
+// loop over binary input and distribute chains
+// TODO: layer 0 | ???
+void dist(unsigned long int *in, int *c_szs, chain *or_ch, p_tree *p_layers) {
+            //input,              chain_szs,    or_chains,         p_layers
+
+  // in_pos -   or_tot/c_szs[0] - layer pos - or_ch pos
+  int     i = 0,    csz_pos = 1,      l_pos = 0, chain_pos = 0;
+  int is_disting = 1;
+  unsigned long int cur_tok = 0, cur_p = 0, cur_n = 0;
+
+  //for (i=0; i < in_sz ; i++) {
+  while (in[i] != 0x0) {
+    cur_tok = in[i];
+    //printf("0x%08x - ", cur_tok);
+    switch (cur_tok) {
+      case 1: // (
+         //printf("hit (\n");
+         l_pos++;
+         //p_layers[l_pos].layer = l_pos; // need layer here?
+         p_layers[l_pos].start = chain_pos;
+         p_layers[l_pos].pos_dist |= cur_p;
+         p_layers[l_pos].neg_dist |= cur_n;
+         cur_p = 0; cur_n = 0;
+         break;
+      case 2: // )
+         //printf("hit )\n");
+         if (is_disting == 1) { // NOT (x|x)
+            p_layers[l_pos].pos_dist |= cur_p;
+            p_layers[l_pos].neg_dist |= cur_n;
+         } else {
+            or_ch[chain_pos].pos |= cur_p;
+            or_ch[chain_pos].neg |= cur_n;
+         }
+         is_disting = 1;
+         cur_p = 0; cur_n = 0;
+         do_dist(or_ch, p_layers[l_pos], chain_pos);
+         l_pos--;
+         if (l_pos == 0) // back out to layer 0
+           csz_pos++;
+         /*
+         register int n;
+         for (n=p_layer[l_pos].start; n < chain_pos; n++) {
+           or_ch[n].pos |= p_layers[l_pos].pos_dist;
+           or_ch[n].neg |= p_layers[l_pos].neg_dist;
+         }
+         /// p_layers[l_pos].start = chain_pos + 1; // need 'buffer' start?
+         p_layers[l_pos].pos_dist  = 0;
+         p_layers[l_pos].neg_dist  = 0;
+         */
+         break;
+      case 4: // |
+         //printf("hit |\n");
+         if (l_pos > 0) {
+           c_szs[csz_pos]++;
+           //printf("c_sz[%d] = %d\n", csz_pos, c_szs[csz_pos] );
+         }
+         or_ch[chain_pos].pos |= cur_p;
+         or_ch[chain_pos].neg |= cur_n;
+         cur_p = 0; cur_n = 0;
+         is_disting = 0; // has to be x|x
+         do_dist(or_ch, p_layers[l_pos], chain_pos); //??????????
+         chain_pos++;
+         break;
+      case 8: // !
+         // these should only be !x now
+         cur_tok = in[++i];
+         cur_n |= cur_tok;
+         //printf("hit ! %d\n",(int)cur_tok);
+         break;
+      default:  // cur_tok > 16
+         //printf("hit X %d\n",(int)cur_tok);
+         cur_p |= cur_tok;
+         break;
+    } // switch(cur_tok)
+    i++;
+  } // while strlen(in)
+
+  // wrap up
+  printf("wrap up\n");
+  register int n;
+  for (n=1; n < c_szs[0]; n++)
+    c_szs[c_szs[0]+1] *= c_szs[n];
+  c_szs[c_szs[0]+2] = 0; // cap
+
+  printf("c_szs[%d] = %d\n", csz_pos+1, c_szs[csz_pos+1]);
+
+  // final dist for layer 0
+  //do_dist(or_ch, p_layers[0], chain_pos);
+
+} // void dist
+
+int main() {
+
+  //char *prob = "a && (b || c) || d";
+  //char *prob = "a && !(b || c) || d";
+  //char *prob = "a && (!b || c) || d"; // works
+  //char *prob = "a && !(!(b || c) || d)";
+  //char *prob = "a && !(!(b || !(c && e)) || d)";
+  char prob[2000] = {0};
+  printf("bsat : ");
+  gets(prob);
+  unsigned long int new_prob[2000] = {0}; // sizeof(prob)
+  //unsigned char new_prob[1000] = {0}; // sizeof(prob)
+
+  // untie
+  // remove !()s - convert to binary
+  int or_tot = untie(prob, new_prob);
+
+  // human text
+  // printf("%s\n=\n%s\n", prob, new_prob);
+
+  // hex text
+  //printf("%s\n=\n", prob);
+
+  int i = 0;
+  //for (i=0; i < strlen(prob); i++) // work? w/ 0
+  while (new_prob[i] != 0x0) // work? w/ 0
+    printf("0x%08x - ", (unsigned long int)new_prob[i++]);
+  printf("\n");
+
+  // these are passed to distributor
+  // or chain size array, [0] is max/or_tot, [max+1] tot_chains
+  // figured out latter by (||) cnt + 1
+  int *chain_szs = malloc(sizeof(int) * (or_tot + 3) );
+  chain_szs[0] = or_tot;
+  i = 1;
+  while (i < chain_szs[0] + 3) // bc memset()
+    chain_szs[i++] = 1;
+
+  printf("init or chains\n");
+  chain  *or_chains = malloc(sizeof(chain) * or_tot);
+  printf("init or ptree\n");
+  p_tree *p_layers  = malloc(sizeof(p_tree) * or_tot);
+
+  memset(or_chains, 0x0, sizeof(chain) * or_tot);
+  memset(p_layers,  0x0, sizeof(p_tree) * or_tot);
+
+  printf("disting...\n");
+  dist(new_prob, chain_szs, or_chains, p_layers);
+  printf("done disting...\n");
+
+  i = 0;
+  while (i < or_tot) {
+    printf("or_chains[%d]\n", i);
+    printf("   pos = 0x%08x\n", (unsigned long int)or_chains[i].pos);
+    printf("   neg = 0x%08x\n", (unsigned long int)or_chains[i].neg);
+    printf("\n");
+    i++;
+  }
+
+  i = 0;
+  while (i < chain_szs[0] + 3) {
+    printf("chain_szs[%d] = %d, ", i, chain_szs[i]);
+    i++;
+  }
+
+  printf("\n");
+
+  free(chain_szs);
+  free(or_chains);
+  free(p_layers);
+
+  return 0;
+
+}

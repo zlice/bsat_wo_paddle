@@ -1,0 +1,230 @@
+
+
+perf stat -e instructions:u ./dist
+
+
+
+================================================
+A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c(fgh||xyz)||yuiopqrstuv4)(9||8||7||6||5||!v)dce(!9||!8!(5||6))(4||!4||MQX(5||8))QE(T||g)(C(b||a)(a((d||be)||c)(((bc||ae)d)xy||c)a(bd||dc)xyz(f||e)abc(a(g(d||be)||c)a)d))
+(252 input)  6x more "human input" than 18 chains
+   --- 518,400
+
+untie took : 0.000007
+dist took : 0.000006
+expand took : 0.005908
+
+total time : 0.005921
+        11,781,296      instructions:u                                              
+
+
+basic
+time taken = 0.040417
+
+        207,373,123      instructions:u                                              
+                                     
+================================================
+A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c(fgh||xyz)||yuiopqrstuv4)(9||8||7||6||5||!v)(a||!b||!C)(!4||!r||acf(G||H))A(!A||XZ!Y)(((a(b!c||d!e)(98||67)||cf!g)||5c!a))
+388,800 chains
+
+
+untie took : 0.000009
+dist took : 0.000008
+expand took : 0.005727
+
+total time : 0.005744
+        13,133,453      instructions:u                                              
+
+basic
+time taken = 0.032709
+
+       139,141,279      instructions:u                                              
+
+
+================================================
+A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c(fgh||xyz)||yuiopqrstuv4)(9||8||7||6||5||!v)(a||!b||!C)(!4||!r||acf(G||H))A(!A||XZ!Y||98||76)
+155,520 chains
+
+untie took : 0.000008
+dist took : 0.000007
+expand took : 0.002033
+
+total time : 0.002048
+
+         5,432,433      instructions:u                                              
+
+time taken = 0.022558
+        51,339,896      instructions:u                                              
+
+================================================
+A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c(fgh||xyz)||yuiopqrstuv4)(9||8||7||6||5||!v)(a||!b||!C)(!4||!r||acf(G||H))A(!A||XZ!Y)
+77,760 chains
+
+
+
+untie took : 0.000007
+dist took : 0.000007
+expand took : 0.001317
+
+total time : 0.001331
+         4,576,715      instructions:u                                              
+
+time taken = 0.005535
+        25,867,540      instructions:u                                              
+
+================================================
+A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c(fgh||xyz)||yuiopqrstuv4)(9||8||7||6||5||!v)(a||!b||!C)(!4||!r||acf(G||H))
+38,880 chains
+
+untie took : 0.000004
+dist took : 0.000005
+expand took : 0.000460
+
+total time : 0.000469
+         1,581,202      instructions:u                                              
+
+
+time taken = 0.002473
+        12,321,431      instructions:u                                              
+        
+================================================
+A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c(fgh||xyz)||yuiopqrstuv4)(9||8||7||6||5||!v)(a||!b||!C)(!4||!r||acf)
+29,170 chains
+
+untie took : 0.000003
+dist took : 0.000003
+expand took : 0.000169
+
+total time : 0.000175
+         1,474,001      instructions:u                                              
+
+time taken = 0.001982
+
+         9,208,968      instructions:u                                              
+
+================================================
+A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c(fgh||xyz)||yuiopqrstuv4)(9||8||7||6||5||!v)(a||!b||!C)(!4||!r)
+19,440 chains
+
+untie took : 0.000002
+dist took : 0.000001
+expand took : 0.000121
+
+total time : 0.000124
+
+         1,366,859      instructions:u                                              
+
+
+time taken = 0.001473
+
+         6,178,766      instructions:u                                              
+
+
+================================================
+A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c(fgh||xyz)||yuiopqrstuv4)(9||8||7||6||5||!v)(a||!b||!C)
+9720 chains
+
+untie took : 0.000007
+dist took : 0.000006
+expand took : 0.000172
+
+total time : 0.000185
+           616,964      instructions:u                                              
+
+time taken = 0.000540
+         3,067,639      instructions:u                                              
+
+================================================
+A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c(fgh||xyz)||yuiopqrstuv4)(9||8||7||6||5||!v)(a||!b)
+6480 chains
+
+untie took : 0.000008
+dist took : 0.000007
+expand took : 0.000147
+
+total time : 0.000162
+           581,251      instructions:u                                              
+
+time taken = 0.000354
+         2,113,132      instructions:u                                              
+
+================================================
+A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c(fgh||xyz)||yuiopqrstuv4)(9||8||7||6||5||!v)
+(127 input)   ---    3240 chains
+
+untie took : 0.000005
+dist took : 0.000005
+expand took : 0.000034
+
+total time : 0.000044
+           330,407      instructions:u                                              
+
+time taken = 0.000179
+         1,130,063      instructions:u                                              
+
+
+================================================
+!A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c)
+85       ---        324 chains
+
+untie took : 0.000006
+dist took : 0.000005
+expand took : 0.000009
+
+total time : 0.000020
+
+mem used = 2.253906 MB
+
+basic check
+time taken = 0.000105
+mem used = 2.253906 MB
+
+================================================
+a((d||be)||c)(((bc||ae)d)xy||c)a(bd||dc)xyz(f||e)abc(a(g(d||be)||c)a)d
+(71 input) --- 108 chains
+
+solved by and_chain[107]
+
+untie took : 0.000005
+dist took : 0.000004
+expand took : 0.000006
+
+total time : 0.000015
+
+mem used = 2.253906 MB
+
+basick check
+time taken = 0.000043
+mem used = 2.253906 MB
+
+================================================
+!a((d||be)||c)(((bc||ae)d)xy||c)a(bd||dc)xyz(f||e)abc(a(g(d||be)||c)a)d
+72?   ---  108 chains
+
+untie took : 0.000005
+dist took : 0.000004
+expand took : 0.000005
+
+total time : 0.000014
+
+mem used = 2.253906 MB
+
+basic check
+time taken = 0.000046
+mem used = 2.253906 MB
+
+================================================
+a((d||be)||c)(((bc||ae)d)xy||c)a(bd||dc)
+(41 input)   ---  18 chains
+
+untie took : 0.000003
+dist took : 0.000003
+expand took : 0.000002
+
+total time : 0.000008
+
+mem used = 2.253906 MB
+
+basic check
+time taken = 0.000025
+mem used = 2.253906 MB
+

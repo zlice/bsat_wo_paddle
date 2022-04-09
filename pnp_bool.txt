@@ -1,0 +1,280 @@
+NO or
+NO yes = xor by 1
+NO not = xor by 0
+
+and
+yes = set 1
+not = set 0
+
+blanks = 1   no...
+       = 0 = or of previous / flag set ?
+
+!^&|
+
+a && !a...a=1, a=0, solve, fail
+ 
+
+( (!a && !b && !c) || (a && !c && !d) ) && (b || !a && d)
+
+
+
+
+
+a b c &(d | b e ) ( (b c | a e) d)
+    add () for tokens
+    token counters?
+(a b c &(d | b e ) ( (b c | a e) d) )
+
+
+( start new cmb token
+token abc (cmb1)
+( new cmb token
+token d (cmb2)
+| arr[0] |= 'd' (w/e 00010... value)
+  pos++
+token be
+)
+arr[1] |= 'be'
+)repl recursive token) to 0
+   arr[1] |= 'abc' = 'abcbe'
+   arr[0] |= 'abc' = 'abcd'
+(
+
+
+a b c &(d | b e ) ( (b c | a e) d)
+a b c & (d | b e ) & ( (b c | a e) d)
+a b c & (d | b e ) & ( (b c | a e) d)
+abc & (d | be) & (dbc | dae)
+
+abc d dbc
+abc d dae
+abc be dbc
+abc be dae
+
+
+
+
+
+
+
+
+
+
+
+
+
+25 ops
+
+abcdefghijklmnopqrs
+1&
+1chk
+
+abcdefghi|jklmnopqrs
+2&
+2chk (2 prob)
+
+a|bcdefghijklmnopqr|s
+3&
+3chk
+
+(ab|cd) & (efghijk | lmnopqrs)
+4&
+4chk
+
+(ab|cd) & (ef|gh) & (ijkl|mnopqrs)
+8&
+8chk
+
+(ab|cd) & (ef|gh) & (ijkl | mnop | qrs)
+12&
+12chk
+
+
+
+
+
+
+
+=========================
+
+
+( (!a && !b && !c) || (a && !c && !d) ) && (b || !a && d)
+
+if there's no nots...everything would be true
+assume true
+
+
+1111
+
+( (!a && !b && !c) || (a && !c && !d) ) && (b || !a && d)
+
+
+
+have to run if = done...exp
+
+
+( (!a && !b && !c) || (a && !c && !d) ) && (b || !a && d)
+     0000               1000             0100    0001
+     1110               0011             0000    1000
+   3ops               3ops              1op      2ops
+  have to parse/find & blocks...use |s? ()s? has to be poly?
+
+
+4 combo "expand"
+4 &
+4 checks
+
+for 9 vars, 6 ops? &| within ()
+
+
+25 ops for 15 "lex"
+
+
+alternative...
+( (!a && !b && !c) && (a && !c && !d) ) && (b || !a && d)
+expands to
+!a !b !c a !c !d & (b | !a d)
+xxxx             xxxx   xxxx
+xxxx             xxxx   xxxx
+6ops            1 op     2 ops
+
+2 combo "expand"
+2 &
+2 checks...
+
+
+n^(or) power...
+
+
+
+( (!a && !b && !c) || (a && !c && !d) ) && (b || !a && d)
+
+
+
+saaveeeeeeeeeeeeeeeeeeeeeeee
+!a!b!c
+0100
+1110
+&
+0100
+= false
+
+0001
+1110
+&
+= 0 = true
+
+a!c!d
+1100
+0011 & = 0 = true
+
+1000
+1001 & = 1
+
+
+
+
+
+
+
+( (a | b) | (!b & c ) & ( !a | (b & !c) )
+
+a-------------
+100
+100
+& = 1 = false
+
+110
+001
+& = 0 = true
+
+b-------
+010
+100 & = 0
+
+010
+001 & = 0
+
+!bc-------
+001
+110 & = 0
+
+001
+100 & = 0
+
+
+===========================
+
+
+
+
+
+
+
+
+
+12 ops
+
+NO OR
+!a !b !c a !c !d b !a d a c !b
+
+1 &
+1 chk
+
+14 tot
+
+
+THREE OR
+( (!a !b !c) | (a !c !d) ) & ( (b !a d) | (a c) | !b )
+
+6 &
+6 chk
+
+24 tot
+
+FOUR OR
+( (!a | !b !c) | (a !c | !d) ) & ( (b !a d) | a c !b )
+
+8 &
+8 chk
+
+28 tot
+
+FIVE OR
+( (!a | !b !c) | (a !c !d) ) & ( (b | !a d) | (a c) | !b )
+
+12 &
+12 chk
+
+36 tot
+
+SIX OR
+( (!a !b | !c) | (a !c | !d) ) & ( (b | !a d) | (a c) | !b )
+
+16 &
+16 chk
+
+44 tot
+              contracted - same ops
+              ( !a !b | !c | a !c | !d ) & ( (b | !a d) | (a c) | !b )
+
+SEVEN OR
+( (!a | !b | !c) | (a !c | !d) ) & ( (b | !a d) | (a c) | !b )
+
+20 &
+20 chk
+
+52 tot
+
+
+EIGHT OR
+( (!a | !b | !c) | (a | !c | !d) ) & ( (b | !a d) | (a c) | !b )
+
+24 &
+24 chk
+
+60
+
+
+
+

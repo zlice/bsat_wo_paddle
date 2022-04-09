@@ -1,0 +1,195 @@
+
+untie
+274 ops
+
+do_dist
+45 ops
+
+dist
+460 ops
+
+expand
+257 ops (though biggest loops)
+
+
+
+unsat
+a  |b  |c  |d
+a  |b  |c  |!d
+a  |b  |!c |d
+a  |b  |!c |!d
+a  |!b |c  |d
+a  |b! |c  |!d
+a  |!b |!c |d
+a  |!b |!c |!d
+!a |b  |c  |d
+!a |b  |c  |!d
+!a |b  |!c |d
+!a |b  |!c |!d
+!a |!b |c  |d
+!a |!b |c  |!d
+!a |!b |!c |d
+!a |!b |!c |!d
+
+
+
+x && y && z && ( f || e) && a && b && c && ( a && ( g && (d||be) || c ) && a ) && d
+
+a((d|be)|c)(((bc|ae)d)xy|c)a(bd|dc)
+############## CANT PASS IN SINGLE & |k
+
+a( (x(d||be) )||c))
+
+
+
+a((d||be)||c)(((bc||ae)d)xy||c)a(bd||dc) x && y && z && ( f || e) && a && b && c && ( a && ( g && (d||be) || c ) && a ) && d
+
+
+
+THESE ARE ALL VALGRIND TIMES X_X
+SLOWER
+
+================================================
+A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c(fgh||xyz)||yuiopqrstuv4)(9||8||7||6||5||!v)dce(!9||!8!(5||6))(4||!4||MQX(5||8))QE(T||g)(C(b||a)(a((d||be)||c)(((bc||ae)d)xy||c)a(bd||dc)xyz(f||e)abc(a(g(d||be)||c)a)d)
+(251 input)  6x more "human input" than 18 chains
+
+
+untie took : 0.001517       1.429x more than 18 chains
+dist took : 0.001854        1.038x
+expand took : 0.010501      13.70x (for 2880x more actual chains)
+
+total time : 0.013872       3.839x more than 18 chains
+51,840 chains
+
+possibly 419MB (valgrind)  maybe 155x more memory? bc of impl?
+
+
+================================================
+A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c(fgh||xyz)||yuiopqrstuv4)(9||8||7||6||5||!v) (127 input)
+
+untie took : 0.001188         1.119x more than 18 chains
+dist took : 0.001854          1.038x
+expand took : 0.000980        1.279x
+
+total time : 0.004022         1.113x more than 18 chains
+3230 chains
+
+================================================
+!A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c)
+
+untie took : 0.001193
+dist took : 0.001853
+expand took : 0.000808
+
+total time : 0.003854
+
+================================================
+A((D||BE)||C)(((BC||AE)D)XY||C)A(BD||DC)XYZ(F||E)ABC(A(G(D||BE)||C)A)D(mn(r||s)||c)
+
+untie took : 0.001067
+dist took : 0.001837
+expand took : 0.000817
+
+total time : 0.003721
+324 chains
+
+================================================
+a((d||be)||c)(((bc||ae)d)xy||c)a(bd||dc)xyz(f||e)abc(a(g(d||be)||c)a)d (71 input)
+
+
+untie took : 0.001060
+dist took : 0.001788
+expand took : 0.000787
+
+total time : 0.003635
+
+
+??????????? diff timings
+
+untie took : 0.005591              <-- 5.269x
+dist took : 0.009463               <-- 5.298x
+expand took : 0.002781             <-- 3.630x
+
+total time : 0.017835
+
+^actually 108 chains
+     ~5x longer for <2x more "human input"
+     but 6x more "actual input"
+     most of which is expanding !() and x()
+     6x more actual input, ~10x more unfolding, ~4x more expanding
+
+
+
+================================================
+!a((d||be)||c)(((bc||ae)d)xy||c)a(bd||dc)xyz(f||e)abc(a(g(d||be)||c)a)d
+
+untie took : 0.005169
+dist took : 0.008647
+expand took : 0.003662
+
+total time : 0.017478
+
+
+
+================================================
+a((d||be)||c)(((bc||ae)d)xy||c)a(bd||dc) (41 input)
+
+untie took : 0.001061
+dist took : 0.001786
+expand took : 0.000766
+
+total time : 0.003613
+^ actually 18 chains
+
+possibly 2.7MB
+
+================================================
+!a((d||be)||c)(((bc||ae)d)xy||c)x(bd||dc)
+
+untie took : 0.001193
+dist took : 0.001839
+expand took : 0.000763
+
+total time : 0.003795
+
+
+================================================
+a((d||be)||c)(((bc||!ae)d)xy||c)x(bd||dc)
+
+
+untie took : 0.001190
+dist took : 0.001850
+expand took : 0.000766
+
+total time : 0.003806
+
+
+
+
+a((d||be)||c)(((bc||ae)d)xy||c)a(bd||dc)
+     | inc pos
+        ) inc pos
+            ) inc pos
+                  | inc pos
+                      ) inc pos
+                              ) inc pos????????????
+                                   | inc pos
+                                        ) inc pos
+
+
+
+notes:
+
+is layer 0 being dist every time it hits 0 ??? waste of time...
+^^^ good
+
+read or_chains til 0 ?
+
+3 + 3 + 2 = or chains size?
+
+3 * 3 * 2 = total and chains size?
+
+layer 0 | still not considered...
+
+
+

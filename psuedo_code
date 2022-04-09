@@ -1,0 +1,65 @@
+remove & and 0x20 spaces - simple
+
+
+convert to token array
+--------------------------------
+  loop input string
+    t_master[t_pos] |= table64[token_to_dec];
+    if  special  !   (    )    |    /// > '0000....' binary???
+          t_pos++                   /// < '1111' binary? room for growth
+--------------------------------
+
+
+dist x()x
+abc((d | be) | c )d
+abc(a(d | be)(b | c )a)d
+
+--------------------------------
+
+
+
+  t_master
+  t_remaster    // has to be smaller
+  loop t_master, pos x, end y, dist=0
+    cur_token = t_master[x]
+    if cur_token == (
+      if last_token > 8
+        dist_token |= last_token        // when ((( keep as outside token
+        p_stack[p_layer] = dist_token   // if  a(d( you need to add
+            ^^^ right spot?
+        pos--                           // erase last token bc it's being dist
+      p_layer++;
+    elif cur_token > 8
+      if last_token == )
+        l_tmp = p_layer    // fill back to here
+        l_cnt = p_layer+1  // in 1 layer
+        p_tmp = pos - 2    // token and ) - cheat
+        loop t_remaster
+          if remaster[p_tmp] > 8      // should always be first hit
+             |= cur_token
+          elif )
+            l_cnt++
+          elif (
+            l_cnt--
+          if l_cnt == l_tmp ????
+            GOTO NEXT    // don't fill in dist token
+          p_tmp--
+      elif p_layer > 0
+        cur_token |= dist_token
+
+    elif cur_token == )
+      p_stack[p_layer] = 0
+      p_layer--
+      dist_token = p_stack[p_layer]
+
+    
+    t_remaster[x] = cur_token ??? here
+NEXT:
+    last_token = cur_token
+    pos++
+
+
+------------
+
+put tokens in arry
+cnt (|), mk sets

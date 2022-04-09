@@ -1,0 +1,227 @@
+NEW*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+          (~10 push/pop)
+untie = 274 bytes
+dist  = 364 bytes
+do_dist == 45 (1 ret)
+
+~683 bytes total
+  only parts are gone over each time
+
+
+
+
+
+
+
+abc((d|be)|c)(((bc|ae)d)ad|c)a(bd|dc)
+
+=
+
+18 cases
+----------------------
+3 pos bytes each
+3 neg bytes each
+18 AND each
+18 checks == 0 each
+
+^^^ 126 ops are used specifically to get answers
+            partially to 'dist'
+
+~180 ops to comb chains
+60 ops to dist (improve?)
+??? ops in lookup and original place?
+60 ???
+
+360 TOTAL ops?
+
+50% for dist
+56% the ops of brute force
+       don't have ! code yet...maybe a bit more
+
+~3.5x input to ops
+
+TRY ALL
+
+combo possible with 5 variables...2^5 = 32 ?
+ops in problem...
+abc((d|be)|c)(((bc|ae)d)ad|c)a(bd|dc)
+^^^  ^ ^^  ^    ^^ ^^ ^ ^^ ^ ^ ^^ ^^
+20
+640 "operations" standarly brute forcing
+
+17.5+ in to ops
+
+
+
+
+(a|b|c|d)b (e|f|g|h|i)ad (f|eg)
+   4          5            2     = 40 sets of cases
+
+40 cases
+3 pos, 3 neg, +1 for chk each
+pos[x]  AND neg[x]     == 0
+
+40 * 7 = 280
+
+280 ops specifically to get answers
+
+~400 ops to comb chains
+324 ops to dist  ...most useless 10*27 + (27 * 2)
+
+30 ops in original lookup?
+
+43% is dist
+
+754 TOTAL ops     27.9+ ops * input
+
+
+https://www.hackerearth.com/practice/notes/big-o-cheatsheet-series-data-structures-and-algorithms-with-thier-complexities-1/
+
+
+does seem to be exp time...but
+
+
+on one hand ... a & b & e & a & d & f
+                11 * 40...or even 6 * 40
+                
+                240 input --- NOT 27...that's almost 9x as much input
+
+"754" ops, for 240 input is only 3.14(hah) per input
+
+reduce the "total" ops further, because it was expanding condensed input
+
+take away 300 ops to dist
+
+454 ops for 240 input is 1.89 per input
+
+even further
+
+take away 120 (400-280) ops to get actual | chains operations
+~333 ops for "27" input
+   ACTUALLY
+333 ops for 240 input
+
+since the problem was condensed, and the actual number of inputs misrepresented
+we have - near constant time?
+
+********figure out ops of simple & | chains with pos/neg & ==
+
+
+
+
+TRY ALL
+combo with 9 variables 2^9 = 512
+27 ops in problem
+13,824 ops to brute force...ouch
+
+
+
+-------------------
+
+
+
+
+read token
+
+1 set cur
+
+1 if (
+4   set p.pos p.token player++ dist| ???
+
+1 if )
+2    player-- dist assign
+
+1 if > 8
+1  if last )
+1    if player
+?      rev fill... ??? depends on size, pos, could be 5 or 6, could be 30???
+18 ???                       ((bc|ae)d(a|b))ad is 14 if >8 with 4 |= ___ tot 118 steps
+1    dist assign
+1   player--
+
+1 set token
+1 set last
+1 pos++
+1 chk?
+1 jmp?
+
+
+30ops ? + ! math...60 ?
+
+6 certain ops
+3/5 ops unless )x then 20
+
+26
+
+
+abc((d|be)|c)(((bc|ae)d)ad|c)a(bd|dc)
+
+28 ops (bc original assign |= & chains)
+3 oof ops, 5+6+18 steps
+
+60 ops tops?
+
+
+60 ops in dist algo?
+
+
+
+
+
+
+
+----------------
+
+
+
+
+
+
+dist algo needs to consider layer 0 |
+
+could record token stats as you do dist pass ???
++ to most task?
+   | would + a var and set pos, maybe layer?  3 ops?
+   x would copy a pos?                        1 op?
+   () do nothing bc they are only used for layering in dist???
+   ! would put a var in neg[] instead of pos[]     1 op? 2 op?
+      this also needs to be put in dist algo. a !x has the ! flag set
+      something after it needs to be "inserted"
+      set up arr for ! to begin with?
+
+
+
+this IS the 18 ANDs, before checking
+needs neg logic
+
+6 per solution + 4 for neg???
+10 ops per solution
+18 = 180
+----------------------------
+
+layer_chains[???] = token, token, token... for 3 + 3 + 2 tokens
+chain_szs[??3??] = 3, 3, 2
+            ^num of ()()() to dist
+max_sz = 3 <<< make chain_szs[0] ?
+tot_chains = 3 * 3 * 2  // i * j * n  -1 for index
+
+func(*chains, *ch_sz[], start_pos, sz_pos, dist_tokens) // max = sizeof <chain_sz>
+                           |         |        | passing along
+                           |         |tracker
+                           |        
+                           ^0, then + each chunk size for "arrays"
+  cur_sz  = ch_sz[sz_pos]
+
+  for (x = 0 ; x++ ; x < cur_sz)
+    cur_token = chains[start_pos+x] | dist_token
+    if sz_pos != max_sz
+      cur_token |= func(chains, ch_sz, start_pos + cur_sz, sz_pos+1, cur_token)
+    else
+      master_chain[tot_chains--] = cur_token
+      // need !neg logic
+
+  return cur_token
+
+
+---------------------------------   

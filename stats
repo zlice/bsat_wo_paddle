@@ -1,0 +1,88 @@
+b *(main+183)
+r
+
+
+set logging on
+while 1
+x/i $rip
+stepi
+end
+c
+q
+
+
+
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ987654
+
+~333ops for 59 input
+5.644... x the input
+
+
+1633 for 464 input (neg)
+
+only 3.5 x the neg input
+
+
+4881 for 1392 neg inputs
+
+~3.5 x the input
+
+
+6969 for 1740 pos input
+
+~4x  the input ??? why half the number of ors?
+
+
+9753 for 2784 neg input
+~3.5x input         ALL NEG MEANS 1/2 INPUT IS JUNK
+~7x input if you /2 because of !s
+
+log? time
+
+
+
+
+
+
+$ wc -l inst*
+
+   301 instr_neg
+  1633 instr_neg464_slim
+  3911 instr_neg_np
+   415 instr_neg_slim
+   415 instr_negi_for
+   415 instr_negi_for2
+   474 instr_negi_while
+   471 instr_orig_neg
+   239 instr_orig_pos
+   353 instr_pos
+  6606 instr_pos_np
+   296 instr_pos_slim
+   241 instr_posi_for
+   300 instr_posi_while
+ 16070 total
+
+
+
+CPU time              : 0.001207 s
+Memory used           : 5.67 MB
+
+time taken =            0.000003        (worst case - prolly jumps)
+mem used = 2.253906 MB
+
+                        0.000014 <--- references for pos/neg insteaad of registers
+
+59 & inputs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+CPU time              : 0.001548 s
+Memory used           : 5.67 MB
+
+
+time taken = 0.000005
+mem used = 2.253906 MB
+
+465 inputs
+^^^^^^^^^^^^^^^^^^^

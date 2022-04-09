@@ -1,0 +1,691 @@
+>**UP B-SAT WITHOUT A PADDLE**
+=============================================================================================
+
+<pre>
+    ████
+████░░░░████
+██░░░░░░░░░░▓▓
+██░░░░░░▓▓██████
+██▒▒░░▓▓▒▒▒▒▒▒▒▒████░░░░░░░░░░
+██░░▒▒██▒▒▒▒▒▒▒▒▒▒▒▒██░░░░░░░░░░░░░░░░░░
+██▒▒░░██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░░░░░░░░░░░░░░░░░
+  ██▒▒  ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░░░░░░░░░░░░░░░░░
+    ██▒▒░░██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓██░░░░░░░░░░░░░░░░░░
+    ░░██▒▒░░██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░░░░░░░░░░░░░░░
+  ░░░░██▒▒▒▒░░██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░░░░░░░░░░░
+  ░░&&░░██▒▒▒▒░░▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓░░░░░░░░░░
+  ░░&&░░░░██▒▒▒▒░░██▒▒▒▒▒▒▒▒▒▒████▒▒████░░░░░░░░
+  ░░&&░░░░░░██▒▒▒▒░░██▒▒▒▒▒▒██▓▓▓▓████▒▒██░░░░░░
+  ░░&&░░░░░░░░██▒▒▒▒░░██▒▒██▓▓▓▓▓▓▓▓▓▓██▒▒██░░░░░░░░░░░░░░░░
+  ░░░░&&░░░░░░░░██▒▒░░██▒▒██▓▓▓▓▓▓▓▓▓▓▓▓████████▒▒░░░░░░░░░░░░
+  ░░░░░░&&&&░░░░░░██▒▒░░██▒▒██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▒▒░░░░░░░░░░░░
+  ░░░░░░░░░░&&░░░░░░██▒▒░░████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▒▒░░░░░░░░░░░░
+  ░░░░░░░░░░░░&&░░░░░░██▒▒░░██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██░░░░░░░░░░░░
+  ░░░░░░░░░░░░░░&&░░░░░░██▒▒░░▓▓▓▓██████████████▒▒██░░░░░░░░░░░░░░░░
+  ░░░░░░░░░░░░░░&&░░░░░░░░██▒▒░░██▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██░░░░░░░░░░░░░░░░
+  ░░░░░░░░░░░░░░&&░░░░░░░░░░██▒▒░░████░░██████████▓▓▓▓████░░░░░░░░░░░░░░░░░░░░░░
+    ░░░░░░░░░░░░&&░░░░░░░░░░░░██▒▒░░██ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓██░░░░░░&&░░░░░░░░░░░░░░░░
+    ░░░░░░░░░░░░&&░░░░░░░░░░░░░░██▒▒░░██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓██░░░░░░((&|!)░░░░░░░░░░░░
+    ░░░░░░░░░░░░&&░░░░░░░░!!░░░░░░██▒▒░░▓▓░░██▓▓▓▓▓▓▓▓▓▓▓▓██▓▓▓▓▓▓▓▓▓▓░░░░&&░░||||||░░░░░░
+      ░░░░░░░░░░&&░░░░░░░░!!░░░░░░░░██▒▒░░████▒▒██████████▓▓▓▓▓▓▓▓▓▓▓▓██░░░░░░░░░░░░!!░░░░░░
+      ░░░░░░░░░░░░&&░░░░░░░░!!░░░░░░░░██▒▒░░▒▒██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▒▒██░░░░░░░░░░░░░░░░░░░░
+        ░░░░░░░░░░&|&░░░░░░░░░!!░░░░░░░░▓▓▒▒▒▒████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▒▒▒▒▒▒▓▓░░░░░░░░░░░░░░░░░░
+        ░░░░░░░░░░░░&&░░░░░░░░░░!!░░░░░░░░██▒▒██░░██████▓▓▓▓▓▓▓▓██▒▒▒▒▒▒▒▒▒▒████░░░░░░░░░░░░░░
+        ░░░░░░░░░░░░░░(&░░░░░░░░!!░░░░░░░░██▒▒██▒▒░░██▒▒████████░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░░░░░░░░░░░░░
+        ░░░░!!░░░░░░░░&)░░░░░░░░!!░░░░░░░░░░████▒▒▒▒░░██▒▒▒▒▒▒░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░░░░░░░░░░░
+        ░░░░░░!!░░░░░░░░&&░░░░░░░░░░░░░░░░░░░░░░██▒▒▒▒░░████░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░░░░░░░░░
+          ░░░░!(░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██▒▒▒▒░░░░██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░░░░░░░
+          ░░░░░░|)░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░████▒▒▒▒░░██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░░░░░
+          ░░░░░░&&░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██▒▒▒▒░░████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░░░░░░░
+          ░░░░░░!!░░░░░░░░░░░░░░░░||░░░░░░░░░░░░░░░░░░░░░░██▒▒▒▒░░░░██▒▒▒▒▒▒▒▒▒▒████▒▒██░░░░░░░░
+            ░░░░))░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██▒▒▒▒▒▒░░██▒▒▒▒████▒▒▒▒░░░░████░░░░
+            ░░░░((░░░░░░░░░░░░░░░░░░░░&||&░░░░░░░░░░░░░░░░░░░░░░████▒▒▒▒░░████▒▒▒▒░░░░░░░░░░▒▒▓▓░░
+              ░░^^░░░░░░░░░░░░░░&&░░░░░░░░&&░░░░░░░░░░░░░░░░░░░░░░████▒▒▒▒▒▒░░░░░░░░░░░░░░░░▒▒██
+              ░░░░||&&░░░░░░░░░░░░&&&&░░░░░░&&░░░░░░░░░░||||░░░░░░░░░░████▒▒▒▒░░░░░░░░░░▒▒████░░
+                ░░░░░░!!!!░░░░░░░░░░░░&&&&░░░░((()))░░░░░░░░||░░░░░░░░░░░░████▒▒▒▒░░▒▒████░░░░
+                    ░░░░░░&&░░░░░░░░░░░░░░&&░░░░░░░░&&░░░░░░░░||░░░░░░░░░░░░░░████▒▒██░░░░░░░░
+                        ░░░░░░░░░░░░░░░░░░░░&&░░░░░░&&░░░░░░░░||░░░░░░░░░░░░░░░░░░██░░░░░░░░░░
+                              ░░░░░░░░░░░░░░░░&&░░░░░░&&░░░░░░░░||░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                                        ░░░░░░&&░░░░░░░░░░░░░░░░░░^^^^^^░░░░░░░░░░░░░░░░░░░░
+                                              ░░░░░░        ░░░░░░░░░░░░&&░░░░░░░░░░░░░░░░░░
+                                                                    ░░░░░░░░░░░░░░░░░░░░
+</pre>
+
+
+>Preface
+=============================================================================================
+
+
+I am a programmer and computer nerd, and not a math nerd.
+The words you are about to read will from a programming
+point of view. From a lax, joking, and standards hating pupil of
+the world :]
+
+Rarely do I read math related content. I barely read papers
+written in official formats for any fields. Occasionally
+interest like biology or an exploit write-up warrants a read.
+Excuse any misunderstanings or lack of math-based expressions.
+Boolean will be in C-like syntax, until it isn't.
+
+Assumptions will be made about the reader's understanding
+of boolean logic, programming, algeabra and complex
+correlation.
+
+The boolean satisfiability problem makes some assumptions
+I believe, and hope to show, are misconstrued.
+
+
+
+
+>Boolean Basics
+=============================================================================================
+
+
+At the heart of boolean math, you have 2 core functions.
+These are the AND && and OR || functions.
+For simplicity I will refer to them as & and |.
+There are other operators, such as NOT ! groups () and even XOR \^.
+These represent a simple binary switch, a 1 or 0, on or off.
+
+Let's explore.
+
+>>>**AND**
+
+`a & b`
+
+If `a` is true, and `b` is true, the statement is true.
+
+Simple enough. How about the | operator?
+
+>>>**OR**
+
+`a | b`
+
+If `a` is true, or `b` is true, the statement is true.
+
+If you have programmed or seen the P vs NP problem,
+you are no doubt familiar with the basics.
+
+From there we get more complexities, groupings, variables.
+But all of these will be clearly calculatable, just set
+said variables to true and you're done.
+
+Here we come to the ! operator.
+
+>>>**NOT**
+
+`!a`
+
+NOT: meaning we flip the value of `a`.
+If it was 1, it is now 0. If 0, now it's 1.
+It is easy to see if we set this to 0 then it will ultimately
+pass this simple example.
+
+The operation of ! is what makes the boolean satisfying difficult.
+Later we will massively 'expand' on this issue.
+But for now we will keep going forward.
+
+If you have
+
+`a & !a`
+
+There is no way to solve this.
+You can not have, and not have, `a`. It is a single state.
+
+>>>**LAZY**
+
+Before we get into operations, I would like to simplify
+a couple more things. The first is important to the whole
+argument being made. Everything, EVERYTHING, in boolean
+math can be reduced to what we will call `chains` or
+`and chains`.
+
+This is a larger boolean example than those above.
+
+`a & b | c & ( d & e)`
+
+We haven't touched too much on expansion and compression
+yet, but every boolean problem, no matter the operations,
+can be expressed as sets of &s separated by |s.
+With or without !s, even \^s. This is key.
+
+You have 2 actual problems here. Each side representing
+an & chain.
+
+`a & b`
+
+`|`
+
+`c & d & e`
+
+Going forward, and in code, the & will be implied.
+
+`ab | cde` is much easier to read without &. It
+will also become important in the way code behaves.
+
+<sub>
+Note: | implies () in above example `(abc) | (cde)`
+which is clearer to read
+</sub>
+
+
+>Turing Solutions and Operations
+=============================================================================================
+
+
+
+In progamming it is relatively easy to flip bits, move memory
+and reduce complexity of operations by using a binary format.
+
+For example, I am running a x86_64 ISA, 64bit amd64 based CPU.
+The 64 bits used for data can be taken advantage of to reduce
+ operations. A lookup-table referring to bits can be used to
+set values.
+
+e.g.
+
+```
+
+// ( = 0x28 hex = 40 decimal
+lookup_table[255] = { 0 };
+...
+lookup_table[33]  = 8; // 00001000 binary, ! points here
+...
+lookup_table[40]  = 2; // 00000010 binary, ( points here
+lookup_table[41]  = 1; // 00000001 binary, ) points here
+...
+lookup_table[124] = 4; // 00000100 binary, | points here
+...
+
+t_master[j] |= lookup_table[(unsigned char)input[i]];
+
+```
+
+By doing this you can assign a bit value 1, 2, 4, 8...n
+per token. This limits you to only 64 tokens, since
+we have a 64bit machine. It does however, allow for
+quick instructions like the `|=` which will `add`
+the bit value to a variable. Unfortunately we do not
+have "infinite-bit" computers, but this method is
+used in computing today.
+
+<sub>
+Note: add+ and subtract- can also be used, but we will
+stick with boolean operations for the sake of B-SAT
+</sub>
+
+Now that we've established how we will be using values.
+We will do a check for more complex & ! | chains.
+We will limit the bits to 8 so examples are managable.
+
+For a chain of `abc` the bits in memory would look like
+
+```
+11100000
+abc_____
+```
+
+Back to our simple ! example
+
+`a!a`
+
+The unsolvable `a` but `!a`. This requires 2 variables,
+ pos[itive] and neg[ative], for inclusions and exclusions.
+
+`pos = 10000000`
+
+`neg = 10000000`
+
+There is a conflict here, both can't be true. Easy
+enough to test for: & pos and neg, if your value
+is non-0, there is a conflict and this can not be true.
+
+`1000 & 1000 = 1000`
+
+`1000 != 0`
+
+So far the examples have all been a few operations
+per-input.
+
+But I would like to ask this before we go any further.
+
+Let's say your friend sends you a file. But you don't
+know what this file is. So you ask...
+
+```
+yyy: What's this file?
+fff: It's 10MB
+yyy: I see that, but I can't open it
+fff: It's compressed. You have to unzip it
+yyy: Oh, so it's not 10MB?
+fff: No, it's 10MB
+```
+
+You spend time figuring out what the file is:
+tar, zip, 7z, rar - you decompress it. Now it's a 100MB
+file.
+
+Did your friend send you a 10MB file? Or a 100MB file?
+
+You surely can't use the 10MB version. It's only when
+you expand and unravel the encoded data that you have
+what something you recognize.
+
+Clearly, I side with the 100MB file.
+
+The reduction of expressions has been shown by various
+people in various fields, but the expansion is what
+I'm concerned with. **I do not believe reduced problems
+adequately represent their size; nor present the
+amount of operations required obviously to the observer.**
+"This is my thesis statement." [Planes, Trains, and Plantains]
+
+With math we recognize what's going on without reformatting
+the original problem. Whether it's Σ, some other loop,
+function, or what we will be using here: distributive property.
+
+
+
+>Expand/Distribute/Condense/Compress/Simplify
+=============================================================================================
+
+As previously stated, all boolean math can be expanded,
+with the distributive property, to chains of & statements
+separated by | statements. This is contrast to the commonly
+used CNF format, which uses | chains separated by &
+statements. Also, as previously stated, the only
+reason we're working these problems at all is because they
+have potential for a conflicting ! value in them.
+
+The distribution of a & operator cleans up string syntax
+for parsing issues. As shown previously, this is also
+useful because you can set the bit for a given token
+in less space/variables.
+
+`a(b|c)`
+
+Becomes
+
+`(ab) | (ac)`
+
+Note there are now only 2 & chains instead of 3. The
+`ab` could be represented in memory as `11000000`,
+and the `ac` as `10100000`.
+
+This is much like the distributive property for basic
+algebra.
+
+`4(1 + 4)`
+
+Becomes
+
+`(1 + 1 + 1 + 1 + 4 + 4 + 4 + 4)`
+
+Of course, we would not add, but instead multiply,
+because we know the shortcut.
+
+Here is a larger problem.
+
+`abc((d|be)|c)(((bc|ae)d)ad|c)a(bd|dc)`
+
+Without going step-by-step, the end result looks like
+
+`(abcd|abcbe|abcc)(abcbcdada|abcaedada|ca)(bda|dca)`
+
+This is not a & chain separated by | yet though.
+So we continue.
+
+```
+(abcd|xxx|xxx)(abcbcdada|xxx|xxx)(bda|xxx)
+(abcd|xxx|xxx)(abcbcdada|xxx|xxx)(xxx|dca)
+(abcd|xxx|xxx)(xxx|abcaedada|xxx)(bda|xxx)
+...
+(xxx|xxx|abcc)(xxx|xxx|ca)(xxx|dca)
+```
+
+And the real problem at the end of it
+
+
+```
+single line
+abcdabcbcdadabda | abcdabcbcdadadca | abcdabcaedadabda|abcdabcaedadadca | abcdcabda | abcdcadca | abcbeabcbcdadabda | abcbeabcbcdadaca | abcbeabcaedadabda | abcbeabcaedadadca | abcbecabda | abcbecadca | abccabcbcdadabda | abccabcbcdadadca | abccabcaedadabda | abccabcaedadadca | abcccabda | abcccadca
+
+multi line
+abcd   abcbcdada  bda
+abcd   abcbcdada  dca
+abcd   abcaedada  bda
+abcd   abcaedada  dca
+abcd   ca         bda
+abcd   ca         dca
+abcbe  abcbcdada  bda
+abcbe  abcbcdada  ca
+abcbe  abcaedada  bda
+abcbe  abcaedada  dca
+abcbe  ca         bda
+abcbe  ca         dca
+abcc   abcbcdada  bda
+abcc   abcbcdada  dca
+abcc   abcaedada  bda
+abcc   abcaedada  dca
+abcc   ca         bda
+abcc   ca         dca
+
+```
+
+The total of actual & chains can be found by
+
+```
+(||)   (||)  (|)
+ 2+1   2+1    1+1
+  3  *   3  *   2 = 18
+```
+
+The chains outside of the | inside each () signify
+what's really going on.
+
+This is not a single 38 boolean input problem.
+This is a 18 set of & chains separated by | operators,
+267 input problem.
+Though we look at it differently in our minds,
+rationalizing and compressing/decompressing data to
+simplify our understanding - this is a way more
+complex problem than it first appeared.
+
+This example still lacks !s that are required to
+qualify as unsolveable. But these tokens could
+be anything. Simplified representations of !s
+that get translated to a `x` e.g. `x = !a`, or
+an enitre set of variables `abc` so that you only
+have to check 1 bit instead of 3. But this is all
+logic we create. Not all transmutations are
+efficient for every problem, but they are doable.
+
+When a computer compiles code, we introduce our
+own condensing and logic so that it produces
+efficient and fast results: transmutation. In
+code, the if-statements we write become `cmp`,
+`jne`, and `je` instructions.  Constantly
+checking your `cmp` and `jmp` in-line while
+checking has 2 issues: first, it adds operations
+while running; second, some of those operations
+may leave the code flow, which does not give us
+"worst case" per a run. Other algorithms use such
+techniques. I would say they are not suited for
+proof-of-concept code.
+
+I want to get into these algorithms, but you
+may have wondered why ! examples have been so
+elusive up until now. I suppose it's time
+I tell you why :[
+
+
+
+NOT Hell
+=============================================================================================
+
+REWRITEREWRITEREWRITEREWRITEREWRITEREWRITEREWRITEREWRITEREWRITE
+
+NOT, ! - This may be the largest reason B-SAT distribution is so difficult.
+It seems innocent at first, just `!a`, a pos and neg 64bit
+variable, & them, no issue. But when you add the distributive
+property...
+
+Take :
+`!( (bc|ae) d (a|b) )`
+
+Expand the inside `d` to
+`!( (dbc|dae) (da|db) )`
+
+! may increase your end chains
+
+! needs 1 false on each side of of either | in (|)(|)
+
+Which means `!(dbc)` becomes `(!d|!b|!c)` -
+You can expand and add ().
+
+However...
+`( ( (!d|!b|!c) | (!d | !a | !e) ) ( ( !d|!a) | (!d | !b) )`
+Isn't quiet the same as before.
+
+`( (!d|!b|!c) (!d|!a|!e)  (!d|!a) (!d|!b) )` -
+This means the same as the original expanded !()
+
+The original | must disappear. If either were true, you failed.
+Therefore the | no longer applies, these are &(|) chains.
+This means 10 | operators - compared to 4 before.
+
+So instead of what appeared to be 4 branches of | chains
+
+```
+(|)  (|)
+1+1  1+1
+2   *  2 = 4
+```
+
+There are over 6x more branches to solve the original !() -
+This ! drastically reduced the actual size of this problem.
+
+```
+(||)   (||)   (|)   (|)
+2+1    2+1    1+1   1+1
+3    *   3   *  2  *  2 = 36
+```
+
+Another example :
+`!( !(bc|ae) d (a|b) )`
+Even worse - double !s
+
+Expand non ! :
+`!( !(dbc|dae) (da|db) )`
+
+This becomes...
+`!( (!d|!b|!c)(!d|!a|!e) (da|db) )`
+
+then
+`( !(!d|!b|!c)!(!d|!a|!e) !(da|db) )`
+
+then further
+`( !(!d|!b|!c)!(!d|!a|!e) ((!d|!a)(!d|!b)) )`
+
+Now !(!x) is a double negative. Which means all of the
+| and ! must go away. If any one of them is false,
+the whole expression becomes true
+
+and that's NOT what you want
+
+`(dbc)(dae)`
+
+Well, wait, that isn't right. Originally we had
+`!( !(dbc|dae) ...)` so if EITHER `dbc` OR `dae`
+became true, we ! that true we fail the inside
+chain, which the oustside !false passes - we have
+to add the | back in
+
+`( (dbc|dae) (!d|!a)(!d|!b) )`
+
+but even `!( !(dbc|dae) (da|db) )` is wrong
+
+! expansion order
+--------------------
+
+In our original `!( !(bc|ae) d (a|b) )` if `d`
+was false, the outside !() would become true.
+So the order of expansion matters too.
+
+Trying again...
+
+Start with : `!( !(bc|ae) d (a|b) )`
+
+Expand outside ! : `( (bc|ae) | !d | !(a|b) )`
+The inside double !(!()) cancels out and the
+implied &s become |s
+
+Expand the newly added !() : `( (bc|ae) | !d | (!a!b) )`
+
+Is this right?
+
+compare distribution
+--------------------
+`!( !(bc|ae) d (a|b) )`
+
+So if `bc` were true, we would ! it.
+The inside !(true) would become false, failing the rest
+we would !false, and be true.
+
+If `bc` OR `ae` were not true, say `!c` and `!e`
+we would have a !false: true. !true: false.
+
+Move to `d`, if that were true, !true: false.
+
+Move to `(a|b)`, say either are true
+we end up with !true - and we fail overall.
+
+Again:
+
+If `bc` or `ae` chains were true...we're fine.
+If `d` is false...we're fine.
+If both in the `a|b` set fail...we're fine.
+
+All of these conditions seem to be true for
+`( (bc|ae) | !d | (!a!b) )`
+
+The original had '4' total | paths.
+The real representation has 6.
+
+
+enough of NOT
+----------------------
+It would seem ! hides most of the complexity behind statements.
+& become |, | become &, includes become excludes.
+!! doubles up and wreak inside ()
+
+Algebra has a not nearly as tricky case for expansion
+
+`4(5*1+1)`
+
+We wouldn't multiply 5 by itself 4 times. But the (
+does mean we multiply 5 by 4 once in this case. This
+behavior is different than the `+1` in the ()
+
+The only "positive" thing to be said, is parsing is a bit
+easier when you can flip & to |, and | to &. But the
+actions involved with !() expansion imply a lot.
+
+! is the bane of boolean logic.
+It changes entire regions into | segments.
+
+
+
+XOR
+=============================================================================================
+
+I won't go into much on XOR \^, but similar to NOT ! there are
+hidden expansions and compressed problems.
+
+`a^b` expands to  `(a && !b) | (!a && b)`
+
+And further down the line
+
+`!( !(a^b | c^a) d^e)`
+
+`!( !( (a!b | !ab) | (c!a | !ca) ) (d!e|!de) )`
+
+`!( (!aba!b) (!cac!a) !ded!e)`
+
+`a|!b|!a|b|c|!a|!c|a|d|!e|!d|e`
+
+We went from '2' | paths to 12.
+Of course in this example we could reduce.
+There are duplicates and counters like `!a|a`
+
+But it is another very compressed represenation of what
+is actually going on under the hood. Even executing a
+single \^ is a small task.
+
+
+
+Algorithmic Expansion - Not NOT
+=============================================================================================
+
+The main focus in this section is distributive property. For
+simplicity, NOT will be excluded from this algorithm.
+
+
+```
+  t_master = "abc((d|be)|c)(((bc|ae)d)ad|c)a(bd|dc)"
+  loop t_master, pos x, end y, dist=0
+    cur_token = t_master[x]
+    if cur_token == (
+      if last_token > 8
+        dist_token |= last_token        // when ((( keep as outside token
+        p_stack[p_layer] = dist_token   // if  a(d( you need to add
+            ^^^ right spot?
+        pos--                           // erase last token bc it's being dist
+      p_layer++;
+    elif cur_token > 8
+      if last_token == )
+        l_tmp = p_layer    // fill back to here
+        l_cnt = p_layer+1  // in 1 layer
+        p_tmp = pos - 2    // token and ) - cheat
+        loop t_remaster
+          if remaster[p_tmp] > 8      // should always be first hit
+             |= cur_token
+          elif )
+            l_cnt++
+          elif (
+            l_cnt--
+          if l_cnt == l_tmp ????
+            GOTO NEXT    // don't fill in dist token
+          p_tmp--
+      elif p_layer > 0
+        cur_token |= dist_token
+
+    elif cur_token == )
+      p_stack[p_layer] = 0
+      p_layer--
+      dist_token = p_stack[p_layer]
+    elif cur_token == | && last_token == ) && ???
+       unset outside dist_token...
+
+    t_remaster[x] = cur_token ??? here
+NEXT:
+    last_token = cur_token
+    pos++
+
+```
+
+
+
+
+
+Algorithmic OR chain splits
+=============================================================================================
+
+
+```
+layer_chains[???] = token, token, token... for 3 + 3 + 2 tokens
+chain_szs[??3??] = 3, 3, 2
+            |      ^sz of each (||) to branch
+            ^num of ()()() to dist
+max_sz = 3
+tot_chains = 3 * 3 * 2  // i * j * n  -1 for index
+
+func(*chains, *ch_sz[], start_pos, sz_pos, dist_tokens) // max = sizeof <chain_sz>
+                           |         |        | passing along
+                           |         |tracker
+                           |
+                           ^0, then + each chunk size for "arrays"
+  cur_sz  = ch_sz[sz_pos]
+
+  for (x = 0 ; x++ ; x < cur_sz)
+    cur_token = chains[start_pos+x] | dist_token
+    if sz_pos != max_sz
+      cur_token |= func(chains, ch_sz, start_pos + cur_sz, sz_pos+1, cur_token)
+    else
+      master_chain[tot_chains--] = cur_token
+      // need !neg logic
+
+  return cur_token
+```
+
+

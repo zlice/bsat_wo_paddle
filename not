@@ -1,0 +1,172 @@
+abc((d|be)|c)(((bc|ae)d)ad|c)a(bd|dc)
+EOL = end layer 0
+| on layer 0 = end layer 0
+
+^^^ dist will ALWAYS end up with (|)(|)
+    ((|)|()) is the same
+
+abc((d|be)|c) ( !((bc|ae)d(a|b))ad|c) a (bd|dc)
+
+
+
+
+
+NOT Hell
+=============================================================================================
+
+!( (bc|ae) d (a|b) )
+!( (dbc|dae) (da|db) )
+may ?x (multiply) your end chains
+
+! needs 1 false on each (|)
+
+whic means !(dbc) becomes (!d|!b|!c)
+however...
+( ( (!d|!b|!c) | (!d | !a | !e) ) ( ( !d|!a) | (!d | !b) )
+isn't quiet the same as before
+
+( (!d|!b|!c) (!d|!a|!e)  (!d|!a) (!d|!b) )
+this means the same as the original expanded !()
+the original | must disappear. if either were true, you failed.
+therefore the | no longer applies, these are &(|) chains.
+this means 10 | in you chains
+compared to 4 branches, over 2x more branches to solve
+the compression of !() drastically reduced the actual size of this problem
+
+Another example.
+
+!( !(bc|ae) d (a|b) )
+!( !(dbc|dae) (da|db) )
+
+even worse
+double !
+
+!(!()()) becomes...
+
+!( (!d|!b|!c)(!d|!a|!e) (da|db) )
+then
+( !(!d|!b|!c)!(!d|!a|!e) !(da|db) )
+then further
+( !(!d|!b|!c)!(!d|!a|!e) ((!d|!a)(!d|!b)) )
+
+now !(!x) is a double negative. which means all of the | and ! must go away
+if any one of them is false, the whole expression becomes true
+                                  and that's NOT what you want
+
+(dbc)(dae)
+
+well wait, now that isn't right. originally we had !( !(dbc|dae) ...)
+so if EITHER dbc OR dae became true, we ! that true
+we fail the inside chain, which the oustside !false passes
+we have to add the | back in
+
+( (dbc|dae) (!d|!a)(!d|!b) )
+
+does this equal ???
+
+!( !(dbc|dae) (da|db) )
+
+original problem
+--------------------
+so if dbc were true, we would ! it.
+the !(true) would become false, failing the rest
+we would !false, and be true
+
+if dbc OR dae were not true, say !c and !e
+we would have a !false: true
+move to (da|db), say either are true
+we end up with !true - and we fail overall
+
+again, if dbc or dae sets were true. we're fine
+if da and db sets fail, we're fine
+then these aren't equal statements yet
+
+expansion corrected
+----------------------
+( (dbc|dae) | (!d|!a)(!d|!b) )
+   ^-though, these () are useless
+
+this more accurately replicates the original problem
+and isn't as straight forward as other boolean operations.
+
+!( !(dbc|dae) (da|db) )
+
+the original had '4' total | paths.
+the real representation has 6.
+
+It would seem ! hides most of the complexity behind statements.
+& become |, includes become excludes
+!! doubles up and go inside ()
+
+
+
+???????
+
+
+! is the bane of this boolean logic
+  it branches entire regions into | segments
+
+I'm sure you agree. If not, you're either a very twisted person
+or have an answer I want to hear.
+Either way, I'd love to meet you :]
+
+
+
+XOR
+==========================================
+
+I won't go into much on XOR ^, but similar to NOT ! there are
+hidden expansions and compressed problems.
+
+a^b
+
+expands to
+
+(a && !b) | (!a && b)
+
+and further down the line
+
+!( !(a^b | c^a) d^e)
+
+!( !( (a!b | !ab) | (c!a | !ca) ) (d!e|!de) )
+
+!( (!aba!b) (!cac!a) !ded!e)
+
+a|!b|!a|b|c|!a|!c|a|d|!e|!d|e
+
+we went from '2' | paths to 12.
+of course in this example we could reduce.
+there are duplicates and counters like !a|a
+
+
+
+now you have
+(||)(||)(|)
+
+3 * 3 * 2
+
+18 total chains
+
+
+layer_chains[???] = token, token, token... for 3 + 3 + 2 tokens
+chain_szs[??3??] = 3, 3, 2
+            ^num of ()()() to dist
+max_sz = 3
+tot_chains = 3 * 3 * 2  // i * j * n  -1 for index
+
+func(*chains, *ch_sz[], start_pos, sz_pos, dist_tokens) // max = sizeof <chain_sz>
+                           |         |        | passing along
+                           |         |tracker
+                           |        
+                           ^0, then + each chunk size for "arrays"
+  cur_sz  = ch_sz[sz_pos]
+
+  for (x = 0 ; x++ ; x < cur_sz)
+    cur_token = chains[start_pos+x] | dist_token
+    if sz_pos != max_sz
+      cur_token |= func(chains, ch_sz, start_pos + cur_sz, sz_pos+1, cur_token)
+    else
+      master_chain[tot_chains--] = cur_token
+      // need !neg logic
+
+  return cur_token
