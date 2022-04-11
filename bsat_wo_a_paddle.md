@@ -61,6 +61,7 @@ finishing I read something which made me think the conclusion
 I came to was "CNF vs DNF" format. I brushed it off as
 "p vs np is a compression problem" and never uploaded this.
 More of a backup than anything, but either way here it is.
+See: `FOLLOW_UP.md`
 
 I am a programmer and computer nerd, and not a math nerd.
 The words you are about to read will from a programming
